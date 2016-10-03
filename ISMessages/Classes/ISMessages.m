@@ -285,7 +285,6 @@ static NSMutableArray* currentAlertArray = nil;
         @synchronized (currentAlertArray) {
             
             [NSRunLoop cancelPreviousPerformRequestsWithTarget:self];
-            [currentAlertArray removeObject:self];
             
             CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
             CGFloat alertYPosition = -_alertViewHeight;
@@ -303,6 +302,7 @@ static NSMutableArray* currentAlertArray = nil;
                 [self.view removeFromSuperview];
             }];
             
+            [currentAlertArray removeObject:self];
         }
     }
     
@@ -315,7 +315,6 @@ static NSMutableArray* currentAlertArray = nil;
             
             ISMessages* activeAlert = currentAlertArray[0];
             [NSRunLoop cancelPreviousPerformRequestsWithTarget:activeAlert];
-            [currentAlertArray removeObject:activeAlert];
             
             [UIView animateWithDuration:0.1f
                              animations:^{
@@ -324,6 +323,7 @@ static NSMutableArray* currentAlertArray = nil;
                                  [activeAlert.view removeFromSuperview];
                              }];
             
+            [currentAlertArray removeObject:activeAlert];
         }
     }
     
